@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag pihole_exporter:$(date +%s)
+      run: go env -w GO111MODULE=auto&&docker build . --file Dockerfile --tag pihole_exporter:$(date +%s)
