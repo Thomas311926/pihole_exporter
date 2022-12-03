@@ -24,7 +24,7 @@ LABEL summary="PiHole Exporter Docker image" \
 RUN apk add --no-cache alpine-sdk bash
 WORKDIR /go/src/github.com/nlamirault/pihole_exporter
 COPY . .
-RUN go build -o /app/pihole_exporter pihole_exporter.go && chmod +x /app/pihole_exporter
+RUN go env -w GO111MODULE=auto&&go build -o /app/pihole_exporter pihole_exporter.go && chmod +x /app/pihole_exporter
 
 FROM alpine:latest
 COPY --from=build /app/pihole_exporter /app/pihole_exporter
